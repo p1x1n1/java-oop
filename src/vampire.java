@@ -1,4 +1,4 @@
-import java.util.Arrays;
+
 import java.util.Objects;
 
 public class vampire implements undead{
@@ -16,6 +16,9 @@ public class vampire implements undead{
     static String[] level_name = {"Младший вампир","Опытный вампир","Повелитель вампиров",
     "Великий магистр"};
     int level_point;
+
+
+
     public class VampiresLevel extends Exception {
 
         public VampiresLevel(String message) {
@@ -70,7 +73,15 @@ public class vampire implements undead{
         return Objects.hash(name, health, abilities_count, level);
     }
 
+    @Override
+    public int getHealth() {
+        return health;
+    }
 
+    @Override
+    public void setHealth(int health) {
+        this.health = health;
+    }
 
 
 
@@ -97,7 +108,9 @@ public class vampire implements undead{
     public void setAbilities_count(int abilities_count) {
         this.abilities_count = abilities_count;
     }
-
+    public int[] getAbilities_damage() {
+        return abilities_damage;
+    }
     public int getLevel() {
         return level;
     }
@@ -110,9 +123,9 @@ public class vampire implements undead{
         return level_name;
     }
 
-    public void setLevel_name(String[] level_name) {
+    /*public void setLevel_name(String[] level_name) {
         this.level_name = level_name;
-    }
+    }*/
 
     public int getLevel_point() {
         return level_point;

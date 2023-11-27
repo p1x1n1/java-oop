@@ -72,10 +72,10 @@ public class wizard implements undead{
         return level_point;
     }
 
-    public void setLevel_point(int level_point) {
+   /* public void setLevel_point(int level_point) {
         this.level_point = level_point;
     }
-
+    */
     public String getName() {
         return name;
     }
@@ -115,11 +115,11 @@ public class wizard implements undead{
     public int[] getAbilities_damage() {
         return abilities_damage;
     }
-
+    /*
     public void setAbilities_damage(int[] abilities_damage) {
         this.abilities_damage = abilities_damage;
     }
-
+    */
     public int getHealth() {
         return health;
     }
@@ -128,7 +128,5 @@ public class wizard implements undead{
         this.health = health;
     }
 
-    public void setLevel_name(String[] level_name) {
-        this.level_name = level_name;
-    }
+
 }

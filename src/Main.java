@@ -41,6 +41,7 @@ public class Main {
                 }
             }
             System.out.println(undeads_abilities_strong);
+
             //equals
             System.out.println(W1.equals(V1) + " " + W1.equals(W2) + " " + W1.equals(W1) + " " + W1.equals(W4));
             System.out.println(V1.equals(V3) + " " + V1.equals(V1) + " " + V4.equals(V3));
