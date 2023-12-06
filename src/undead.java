@@ -1,5 +1,14 @@
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Writer;
+
 public interface undead {
     int use_abilities();
+    //5.2
+    void output(OutputStream out) throws IOException;
+    void write(Writer out)  throws IOException;
+
+
     int getLevel_point();
     void setName(String name);
     String getName();

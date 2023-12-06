@@ -1,5 +1,6 @@
+import java.io.*;
 import java.util.LinkedList;
-//import java.io.IOException;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -43,14 +44,28 @@ public class Main {
             System.out.println(undeads_abilities_strong);
 
             //equals
-            System.out.println(W1.equals(V1) + " " + W1.equals(W2) + " " + W1.equals(W1) + " " + W1.equals(W4));
-            System.out.println(V1.equals(V3) + " " + V1.equals(V1) + " " + V4.equals(V3));
+            //System.out.println(W1.equals(V1) + " " + W1.equals(W2) + " " + W1.equals(W1) + " " + W1.equals(W4));
+            //System.out.println(V1.equals(V3) + " " + V1.equals(V1) + " " + V4.equals(V3));
+            //5.2
+            //byte[] buffer = V1.toString().getBytes();//преобразуем строку к массиву байт
+            FileOutputStream fos = new FileOutputStream("C:\\Users\\1\\OneDrive\\Документы\\вуз\\3 курс\\java\\lab4-OOP-sims\\outputstream.txt");//Класс FileOutputStream создаёт объект класса OutputStream, который можно использовать для записи байтов в файл.
+            File file = new File("C:\\Users\\1\\OneDrive\\Документы\\вуз\\3 курс\\java\\lab4-OOP-sims\\outputwriter.txt");
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            V1.write(fw);
+            V1.output(fos);
+
+            Reader reader = new FileReader(file);
+            System.out.println();
+            undead v=UndeadOutput.readundead(reader);
+            System.out.println(v);
+
+            DataInputStream dis = new DataInputStream(new FileInputStream("C:\\Users\\1\\OneDrive\\Документы\\вуз\\3 курс\\java\\lab4-OOP-sims\\outputstream.txt"));
+            v = UndeadOutput.inputundead(dis);
+            System.out.println(v);
         }
-        catch (wizard.WizardsLevel e) {
-            System.out.println(e.getMessage());
-        }
-        catch (vampire.VampiresLevel e) {
-            System.out.println(e.getMessage());
-        }
+        catch (wizard.WizardsLevel e) { System.out.println(e.getMessage());}
+        catch (vampire.VampiresLevel e) { System.out.println(e.getMessage());}
+        catch (IOException e) { System.out.println(e.getMessage());}
+
     }
 }

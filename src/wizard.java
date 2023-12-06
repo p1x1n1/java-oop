@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.Objects;
 
 public class wizard implements undead{
@@ -46,6 +47,22 @@ public class wizard implements undead{
         System.out.println(this.abilities[use]);
         return this.abilities_damage[use];
     }
+    //5.2
+    public void output(OutputStream out) throws IOException {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        String line = "Wizard"+' '+this.getName()+' '+this.getLevel()+' '+this.getAbilities_count()+' ';
+        byte[] buffer = line.getBytes();
+        bos.write(buffer);
+        bos.writeTo(out);
+
+    }
+    public void write(Writer out) throws IOException {
+        BufferedWriter bw = new BufferedWriter(out);
+        String line = "Wizard"+' '+this.getName()+' '+this.getLevel()+' '+this.getAbilities_count()+' ';
+        bw.write(line);
+        bw.close();
+    }
+
     @Override
     public String toString() {
         return "Чародей " +
