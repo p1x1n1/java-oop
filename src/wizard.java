@@ -1,7 +1,8 @@
 import java.io.*;
+import java.util.Iterator;
 import java.util.Objects;
 
-public class wizard implements undead,Serializable{//Serializable Сериализация — это процесс сохранения состояния объекта в последовательность байт.
+public class wizard implements undead,Serializable,Iterable<String>{//Serializable Сериализация — это процесс сохранения состояния объекта в последовательность байт.
     @Serial
     private static final long serialVersionUID = 1L;//уникальный идентификатор версии сериализованного класса
     /*
@@ -24,6 +25,12 @@ public class wizard implements undead,Serializable{//Serializable Сериали
     static String[] level_name={"Подмастерье","Новичок","Приверженец",
     "Эксперт","Знаток","Виртуоз"};
     int level_point;
+    String[] info = new String[3];
+    @Override
+    public Iterator<String> iterator() {
+        return new UndeadUterable<>(info);
+    }
+
     public static class WizardsLevel extends Exception {
 
         public WizardsLevel(String message) {
@@ -43,6 +50,9 @@ public class wizard implements undead,Serializable{//Serializable Сериали
         this.abilities_count = abcnt;
         this.level_point = 0;
         this.health = 100;
+        this.info[0] = name;
+        this.info[1]= level_name[level];
+        this.info[2]= abcnt+"";
     }
     public wizard(){}
     //````````````````````````````````````````````````````````````````````

@@ -5,7 +5,7 @@ public class UndeadOutput {
     public static void output_undead(undead o, OutputStream out) throws IOException {
         o.output(out);
     }
-    //- чтения из байтового потока 
+    //- чтения из байтового потока
     public static undead inputundead(InputStream in)  throws IOException , vampire.VampiresLevel,wizard.WizardsLevel{//undead
         undead u = null;
         String line = new String(in.readAllBytes());

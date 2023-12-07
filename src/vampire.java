@@ -1,13 +1,13 @@
 
 import java.io.*;
+import java.util.Iterator;
 import java.util.Objects;
 
-public class vampire implements undead,Serializable{
+public class vampire implements undead,Serializable,Iterable<String>{
     @Serial
     private static final long serialVersionUID = 1L;//уникальный идентификатор версии сериализованного класса
     String name;
     int health;
-
     static String[] abilities = {"Вызвать галлюцинации", "Определение характера","Непреодолимая дремота","Вампирическое обаяние",
             "Сверхъестественная скорость","Вызывать потребности","Вампирическая сила","Создание вампиров"};
 
@@ -19,6 +19,15 @@ public class vampire implements undead,Serializable{
     static String[] level_name = {"Младший вампир","Опытный вампир","Повелитель вампиров",
     "Великий магистр"};
     int level_point;
+    String[] info = new String[3];
+
+    @Override
+    public Iterator<String> iterator() {
+        return new UndeadUterable<>(info);
+    }
+
+
+    //ITERATOR
 
 
     //exception
@@ -40,6 +49,9 @@ public class vampire implements undead,Serializable{
         this.abilities_count = abcnt;
         this.level_point = 0;
         this.health = 100;
+        this.info[0] = name;
+        this.info[1]= level_name[level];
+        this.info[2]= abcnt+"";
     }
     public vampire(){}
    // public static void ykys_vampire(){}

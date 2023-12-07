@@ -3,7 +3,6 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
         try {
             LinkedList<undead> undeads = new LinkedList<>();
@@ -11,17 +10,19 @@ public class Main {
             LinkedList<wizard> wizards = new LinkedList<>();
             boolean b = true;
             while (b){
-                System.out.println("Выберите действие: \n" +
-                        "1.Создать персонажа \n"+
-                        "2.Посмотреть клан \n"+
-                        "3.Тест способностей");
+                System.out.println("""
+                        Выберите действие:\s
+                        1.Создать персонажа\s
+                        2.Посмотреть клан\s
+                        3.Тест способностей""");
                 Scanner sc = new Scanner(System.in);
                 int i = sc.nextInt();
                 switch (i){
                     case 1:
-                        System.out.println("Выберите действие: \n" +
-                                "1.Создать вампира \n"+
-                                "2.Создать волшебника");
+                        System.out.println("""
+                                Выберите действие:\s
+                                1.Создать вампира\s
+                                2.Создать волшебника""");
                         i= sc.nextInt();
                         System.out.println("Введите имя:");
                         String name= sc.nextLine();
@@ -42,10 +43,11 @@ public class Main {
                         }
                         break;
                     case 2:
-                        System.out.println("Выберите действие: \n" +
-                                "1.Посмотреть клан вампиров \n"+
-                                "2.Посмотреть клан волшебников \n" +
-                                "3.Посмотреть клан нежити");
+                        System.out.println("""
+                                Выберите действие:\s
+                                1.Посмотреть клан вампиров\s
+                                2.Посмотреть клан волшебников\s
+                                3.Посмотреть клан нежити""");
                         i= sc.nextInt();
                         switch (i) {
                             case 1:
@@ -60,10 +62,10 @@ public class Main {
                         }
                         break;
                     case 3:
-                        for (int j = 0,power; j< undeads.size() ; j++) {
+                        for (int j = 0,pr; j< undeads.size() ; j++) {
                             System.out.println(undeads.get(j));
-                            power = undeads.get(j).use_abilities();
-                            System.out.println("с силой: "+power);
+                            pr = undeads.get(j).use_abilities();
+                            System.out.println("с силой: "+pr);
                             }
                         break;
                 }
@@ -118,36 +120,50 @@ public class Main {
             wizard W1 = new wizard("Morgan", 3, 33);
 
             //out
+            System.out.println("Output");
             FileOutputStream fos = new FileOutputStream("C:\\Users\\1\\OneDrive\\Документы\\вуз\\3 курс\\java\\lab4-OOP-sims\\outputstream.txt");//Класс FileOutputStream создаёт объект класса OutputStream, который можно использовать для записи байтов в файл.
             UndeadOutput.output_undead(W1,fos);
             //W1.output(fos);
 
             //write
+            System.out.println("Write");
             File file = new File("C:\\Users\\1\\OneDrive\\Документы\\вуз\\3 курс\\java\\lab4-OOP-sims\\outputwriter.txt");
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             UndeadOutput.writeundead(V1,fw);
             //V1.write(fw);
 
             //read
+            System.out.println("Read");
             Reader reader = new FileReader(file);
             System.out.println();
             undead v= UndeadOutput.readundead(reader);
             System.out.println(v);
 
             //input
+            System.out.println("Input");
             DataInputStream dis = new DataInputStream(new FileInputStream("C:\\Users\\1\\OneDrive\\Документы\\вуз\\3 курс\\java\\lab4-OOP-sims\\outputstream.txt"));
             v = UndeadOutput.inputundead(dis);
             System.out.println(v);
 
             //5.2.2
+            System.out.println();
+            System.out.println("Serialize");
             FileOutputStream outputStream = new FileOutputStream("C:\\Users\\1\\OneDrive\\Документы\\вуз\\3 курс\\java\\lab4-OOP-sims\\save.ser");
             FileInputStream inputStream = new FileInputStream("C:\\Users\\1\\OneDrive\\Документы\\вуз\\3 курс\\java\\lab4-OOP-sims\\save.ser");
             UndeadOutput.serializeUndead(V1,outputStream);
             System.out.println(UndeadOutput.deserializeUndead(inputStream));
+
+            System.out.println();
+            System.out.println("Iterator");
+            //5.3.2
+            for (String element : V1) {
+                System.out.println(element);
+            }
+            for (String element : W1) {
+                System.out.println(element);
+            }
         }
-        catch (wizard.WizardsLevel e) { System.out.println(e.getMessage());}
-        catch (vampire.VampiresLevel e) { System.out.println(e.getMessage());}
-        catch (IOException e) { System.out.println(e.getMessage());}
+        catch (wizard.WizardsLevel | vampire.VampiresLevel | IOException e) { System.out.println(e.getMessage());}
         catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
