@@ -44,4 +44,9 @@ public class UndeadOutput {
         undead u = (undead) objectInputStream.readObject();
         return u;
     }
+
+    //5.3.3
+    public static undead unmodifiableUndead(undead o){
+        return new DecoratorUndead(o);
+    }
 }

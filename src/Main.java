@@ -162,6 +162,11 @@ public class Main {
             for (String element : W1) {
                 System.out.println(element);
             }
+            //5.3.3
+            v = UndeadOutput.unmodifiableUndead(V1);
+            System.out.println(v.getName());
+            //v.setName("sam");
+            //5.3.4
         }
         catch (wizard.WizardsLevel | vampire.VampiresLevel | IOException e) { System.out.println(e.getMessage());}
         catch (ClassNotFoundException e) {
