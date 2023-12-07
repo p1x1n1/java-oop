@@ -1,13 +1,20 @@
 import java.io.*;
 import java.util.Objects;
 
-public class wizard implements undead{
+public class wizard implements undead,Serializable{//Serializable Сериализация — это процесс сохранения состояния объекта в последовательность байт.
+    @Serial
+    private static final long serialVersionUID = 1L;//уникальный идентификатор версии сериализованного класса
+    /*
+    *  При сериализации объекта сериализуются все объекты, на которые он ссылается в своих переменных экземпляра. И если те объекты тоже ссылаются на третьи объекты, они тоже сериализуются. И так до бесконечности.
+    * Все классы в этой цепочке должны быть Serializable, иначе их невозможно будет сериализовать и будет выброшено исключение.
+    * Это поле тоже обязательно иначе не получится десерелизовать объект
+    * */
     String name;
     int health;
     /*String[][] abilities = {{"Копиато","5"}, {"Обессмертие","5"}, {"Распроклят","4"},
             {"Послушанти","4"},{"Холодрыго","3"},{"Некроценоз","2"},{"Электризз","1"},{"Инферно","1"}};*/
     static String[] abilities = {"Инферно","Электризз","Некроценоз","Холодрыго","Послушанти","Распроклят","Обессмертие","Копиато"};
-    int[]abilities_damage = {1,1,2,3,4,4,5,5};
+    transient int[]abilities_damage = {1,1,2,3,4,4,5,5};
 
     //"Починио","Чиститти","Лакомиццо","Цветтенио",
     //    "Телепортиум","Тираж","Зеленцо","Репатриацио","Обряд вознесения"
@@ -17,13 +24,13 @@ public class wizard implements undead{
     static String[] level_name={"Подмастерье","Новичок","Приверженец",
     "Эксперт","Знаток","Виртуоз"};
     int level_point;
-    public class WizardsLevel extends Exception {
+    public static class WizardsLevel extends Exception {
 
         public WizardsLevel(String message) {
             super(message);
         }
     }
-    public class NotInIndex extends RuntimeException {
+    public static class NotInIndex extends RuntimeException {
 
         public NotInIndex(String message) {
             super(message);

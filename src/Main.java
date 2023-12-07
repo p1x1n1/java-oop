@@ -62,10 +62,17 @@ public class Main {
             DataInputStream dis = new DataInputStream(new FileInputStream("C:\\Users\\1\\OneDrive\\Документы\\вуз\\3 курс\\java\\lab4-OOP-sims\\outputstream.txt"));
             v = UndeadOutput.inputundead(dis);
             System.out.println(v);
+
+            FileOutputStream outputStream = new FileOutputStream("C:\\Users\\1\\OneDrive\\Документы\\вуз\\3 курс\\java\\lab4-OOP-sims\\save.ser");
+            FileInputStream inputStream = new FileInputStream("C:\\Users\\1\\OneDrive\\Документы\\вуз\\3 курс\\java\\lab4-OOP-sims\\save.ser");
+            UndeadOutput.serializeUndead(V1,outputStream);
+            System.out.println(UndeadOutput.deserializeUndead(inputStream));
         }
         catch (wizard.WizardsLevel e) { System.out.println(e.getMessage());}
         catch (vampire.VampiresLevel e) { System.out.println(e.getMessage());}
         catch (IOException e) { System.out.println(e.getMessage());}
-
+        catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

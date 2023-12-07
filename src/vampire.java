@@ -2,7 +2,9 @@
 import java.io.*;
 import java.util.Objects;
 
-public class vampire implements undead{
+public class vampire implements undead,Serializable{
+    @Serial
+    private static final long serialVersionUID = 1L;//уникальный идентификатор версии сериализованного класса
     String name;
     int health;
 
@@ -11,7 +13,7 @@ public class vampire implements undead{
 
     /*String[][] abilities = {{"Вызвать галлюцинации","1"}, {"Определение характера","1"}, {"Непреодолимая дремота","2"},{"Вампирическое обаяние","3"},
             {"Сверхъестественная скорость","3"}, {"Вызывать потребности","4"}, {"Вампирическая сила","4"},  {"Создание вампиров","5"}};*/
-    int[] abilities_damage= {1, 1, 2, 3, 3, 4, 4, 5};
+    transient int[] abilities_damage= {1, 1, 2, 3, 3, 4, 4, 5};//transient указывает на то что объект не нужно сериализовать
     int abilities_count;
     int level;
     static String[] level_name = {"Младший вампир","Опытный вампир","Повелитель вампиров",

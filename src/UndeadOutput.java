@@ -32,4 +32,16 @@ public class UndeadOutput {
         if (parts[0].equals("Wizard")) {u=new wizard(parts[1],Integer.parseInt (parts[2]),Integer.parseInt(parts[3])); }
         return u;
     }
+    public static  void serializeUndead(undead o,OutputStream out) throws IOException {
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(out);//преобразует объекты в байты
+        objectOutputStream.writeObject(o);
+        //закрываем поток и освобождаем ресурсы
+        objectOutputStream.close();
+
+    }
+    public static  undead deserializeUndead(InputStream in) throws IOException, ClassNotFoundException {
+        ObjectInputStream objectInputStream = new ObjectInputStream(in);
+        undead u = (undead) objectInputStream.readObject();
+        return u;
+    }
 }
