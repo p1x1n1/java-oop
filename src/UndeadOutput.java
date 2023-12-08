@@ -1,6 +1,18 @@
 import java.io.*;
 
 public class UndeadOutput {
+    //5.3.5 Factory
+    private static UndeadFactory factory = new VampireFactory();
+
+    public static void setFactory(UndeadFactory factory) {
+        UndeadOutput.factory = factory;
+    }
+    public static undead createInstance(){
+        return factory.createInstance();
+    }
+    public static undead createInstance(String name, int level, int abcnt) throws vampire.VampiresLevel,wizard.WizardsLevel{
+        return factory.createInstance(name,level,abcnt);
+    }
     // записи в байтовый потоk
     public static void output_undead(undead o, OutputStream out) throws IOException {
         o.output(out);
@@ -11,8 +23,10 @@ public class UndeadOutput {
         String line = new String(in.readAllBytes());
         System.out.println(line);
         String[] parts = line.split(" ");
-        if (parts[0].equals("Vampire")) {u=new vampire(parts[1],Integer.parseInt (parts[2]),Integer.parseInt(parts[3]));}
-        if (parts[0].equals("Wizard")) {u=new wizard(parts[1],Integer.parseInt (parts[2]),Integer.parseInt(parts[3])); }
+        if (parts[0].equals("Vampire")) { factory = new VampireFactory();}
+        if (parts[0].equals("Wizard")) { factory = new WizardFactory();}
+            //u=new wizard(parts[1],Integer.parseInt (parts[2]),Integer.parseInt(parts[3])); }
+        u = createInstance(parts[1],Integer.parseInt (parts[2]),Integer.parseInt(parts[3]));
        // System.out.println(line);
         return u ;
     }
@@ -28,8 +42,13 @@ public class UndeadOutput {
         System.out.println(line);
         bufferedReader.close();
         String[] parts = line. split(" ");
-        if (parts[0].equals("Vampire")) {u=new vampire(parts[1],Integer.parseInt (parts[2]),Integer.parseInt(parts[3]));}
+        /*
+        if (parts[0].equals("Vampire")) {//u=new vampire(parts[1],Integer.parseInt (parts[2]),Integer.parseInt(parts[3]));}
         if (parts[0].equals("Wizard")) {u=new wizard(parts[1],Integer.parseInt (parts[2]),Integer.parseInt(parts[3])); }
+        */
+        if (parts[0].equals("Vampire")) { factory = new VampireFactory();}
+        if (parts[0].equals("Wizard")) { factory = new WizardFactory();}
+        u = createInstance(parts[1],Integer.parseInt (parts[2]),Integer.parseInt(parts[3]));
         return u;
     }
     public static  void serializeUndead(undead o,OutputStream out) throws IOException {
@@ -49,10 +68,5 @@ public class UndeadOutput {
     public static undead unmodifiableUndead(undead o){
         return new DecoratorUndead(o);
     }
-    //5.3.5 Factory
-    private static UndeadFactory factory;
 
-    public static void setFactory(UndeadFactory factory) {
-        UndeadOutput.factory = factory;
-    }
 }
