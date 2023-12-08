@@ -49,4 +49,10 @@ public class UndeadOutput {
     public static undead unmodifiableUndead(undead o){
         return new DecoratorUndead(o);
     }
+    //5.3.5 Factory
+    private static UndeadFactory factory;
+
+    public static void setFactory(UndeadFactory factory) {
+        UndeadOutput.factory = factory;
+    }
 }
