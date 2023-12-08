@@ -30,7 +30,7 @@ public class Main {
                         System.out.println("Введите уровень:");
                         int level = sc.nextInt();
                         System.out.println("Введите количество способности:");
-                        int abcnt= sc.nextInt();
+                        int abcnt = sc.nextInt();
                         switch (i) {
                             case 1:
                                 vampires.add(new vampire(name,level,abcnt));
